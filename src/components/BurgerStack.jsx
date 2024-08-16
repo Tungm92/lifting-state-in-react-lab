@@ -2,40 +2,30 @@ import { useState } from 'react'
 
 const BurgerStack = (props) => {
 
+    const btnClick = (e) => {
+        props.removeFromBurger(e.target.value)
+    }
+
     return (
         <>
             <ul>
-                <h3>Your Burger</h3>
-                {props.stacks.map((stack, idx) => {
-                    return (
-                        <li style={{ color: stack.color }} key={idx}>
-                        </li>
-                    )
-                })}
+                {props.stacks.length > 0 ? (
+                    <>
+                        {props.stacks.map((stack, idx) => {
+                            return (
+                                <li style={{ color: stack.color }} key={idx}>
+                                    {stack.name}
+                                    <button value={idx} onClick={btnClick}>x</button>
+                                </li>
+                            )
+                        })}
+                    </>
+                ) : (
+                    <h3>No Ingredients</h3>
+                )}
             </ul>
         </>
     )
 };
   
 export default BurgerStack;
-
-
-/*
-
-    return (
-        <>
-            <ul>
-                <h3>Ingredients</h3>
-                {props.availableIngredients.map((ingredient, idx) => {
-                    return (
-                        <li style={{color: ingredient.color}} key={idx}>
-                            {ingredient.name}
-                            <button onClick={handleAdd}>+</button>
-                        </li>
-                    )
-                })}    
-            </ul>
-        </>
-    )   
-
-*/

@@ -24,14 +24,15 @@ export const availableIngredients = [
 const App = () => {
   
   const [stacks, setStacks] = useState([]);
-  console.log(stacks)
-  const addToBurger = (stack) => {
-    const updatedStacks = [...stacks, stack];
+  const addToBurger = (ingredientIdx) => {
+    const ingredient = availableIngredients[ingredientIdx] 
+    const updatedStacks = [...stacks, ingredient];
     setStacks(updatedStacks);
   };
 
-  const removeFromBurger = (stackId) => {
-    const updatedStacks = stacks.filter((stack) => stack.id !== stackId)
+  const removeFromBurger = (ingredientIdx) => {
+    const updatedStacks = [...stacks];
+    updatedStacks.splice(ingredientIdx, 1);
     setStacks(updatedStacks);
   };
   
